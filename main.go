@@ -37,6 +37,7 @@ curl --data '{"author": "Douglas Adams", "title": "The Hitchhikers Guide to the 
 curl --data '{"title": "Moby Dick", "author": "Herman Melville", "yearPublished": 1851}' --header  "Content-Type: application/json" --request POST http://localhost:4000/api/books
 
 curl --data '{"author": "Philip K. Dick", "title": "Do Androids Dream of Electric Sheep?", "yearPublished": 1968}' --header  "Content-Type: application/json" --request POST http://localhost:4000/api/books
+
 */
 func AddBookHandler(w http.ResponseWriter, r *http.Request) {
 	headerContentType := r.Header.Get("Content-Type")
@@ -122,7 +123,7 @@ func main() {
 	r.HandleFunc("/api/books", DeleteBooksHandler).Methods("DELETE")
 	srv := &http.Server{
 		Handler:      r,
-		Addr:         "127.0.0.1:4000",
+		Addr:         "0.0.0.0:4000",
 		WriteTimeout: 15 * time.Second,
 		ReadTimeout:  15 * time.Second,
 	}
